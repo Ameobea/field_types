@@ -89,19 +89,18 @@ field_types = "*"
 Use `FieldName` and/or `FieldType` in `derive` struct attribute.
 !*/
 
-extern crate proc_macro;
-extern crate syn;
-extern crate quote;
 extern crate heck;
+extern crate proc_macro;
+extern crate proc_macro2;
+extern crate quote;
+extern crate syn;
 
-use std::iter::FromIterator;
-use proc_macro::TokenStream;
-use syn::{
-    DeriveInput, Ident, Type, Attribute, Fields, Meta,
-    export::{Span, TokenStream2}
-};
-use quote::{quote, ToTokens};
 use heck::CamelCase;
+use proc_macro::TokenStream;
+use proc_macro2::{Span, TokenStream as TokenStream2};
+use quote::{quote, ToTokens};
+use std::iter::FromIterator;
+use syn::{Attribute, DeriveInput, Fields, Ident, Meta, Type};
 
 #[proc_macro_derive(FieldType, attributes(field_types, field_type, field_types_derive, field_type_derive))]
 pub fn field_type(input: TokenStream) -> TokenStream {
